@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "480726367219",
+    "project_id": "inmovehealth",
+    "storage_bucket": "inmovehealth.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:480726367219:android:7827cd8989b8f03abb3086",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgfzLu_PEwEpgk4ulcHTQdZleemm7qM1o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:480726367219:android:9706d2c1c2ed4c80bb3086",
+        "android_client_info": {
+          "package_name": "in.brandvidiya.yogaforweightloss"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgfzLu_PEwEpgk4ulcHTQdZleemm7qM1o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">InMove</string>
+
+    <string name="Начать">Get Started</string>
+    <string name="drawerOpen">drawerOpen</string>
+    <string name="drawerClose">drawerClose</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="a_desc">Найди вдохновение и отправься в путешествие</string>
+    <string name="b_desc">Подбери, что тебе нравится, главное получай удовольствее</string>
+    <string name="c_desc">Тело в движении: твой путь к здоровью и гармонии</string>
+    <string name="one">1/3</string>
+    <string name="two">2/3</string>
+    <string name="three">3/3</string>
+    <string name="login"><u>Вход</u></string>
+    <string name="sinup"><u>Регистрация</u></string>
+
+</resources>
