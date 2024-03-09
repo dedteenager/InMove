@@ -107,19 +107,20 @@ public class Home_page extends AppCompatActivity implements BottomNavigationView
 
 
 
+    @SuppressLint("MissingSuperCall")
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)
                 .setIcon(R.mipmap.ic_launcher_foreground)
                 .setTitle(R.string.app_name)
-                .setMessage("Are You Sure you want to Exit the Application")
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setMessage("Выйти из приложения?")
+                .setPositiveButton("Да", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         finish();
                     }
                 })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();

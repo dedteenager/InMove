@@ -11,9 +11,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher_foreground"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_foreground"
+        android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Diet.meals_page" />
@@ -28,10 +28,10 @@
         <activity android:name=".more.Reminders_page" />
         <activity android:name=".stopwatch.stop_watch_page" />
         <activity android:name=".home.Home_page" />
-        <activity android:name=".LogInActivity" />
-        <activity android:name=".SignUpActivity" />
+        <activity android:name=".Authentification.LogInActivity" />
+        <activity android:name=".Authentification.SignUpActivity" />
         <activity android:name=".slider.slider" />
-        <activity android:name=".ForgotPasswordActivity" />
+        <activity android:name=".Authentification.ForgotPasswordActivity" />
         <activity android:name=".mainpage.MainActivity"
             android:exported="true">
             <intent-filter>

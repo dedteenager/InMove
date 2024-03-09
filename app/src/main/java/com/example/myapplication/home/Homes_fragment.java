@@ -28,9 +28,7 @@ public class Homes_fragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_homes_fragment, container, false);
         context = view.getContext();
-        SharedPreferences sp= context.getSharedPreferences("ForEmail",Context.MODE_PRIVATE);
         tbHello = view.findViewById(R.id.tbHello);
-        tbHello.setText("Привет "+sp.toString());
         stop_watch = view.findViewById(R.id.stop_watch);
         stop_watch.setOnClickListener(new View.OnClickListener() {
             @Override

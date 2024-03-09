@@ -13,13 +13,11 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
-import com.example.myapplication.SignUpActivity;
+import com.example.myapplication.Authentification.SignUpActivity;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.example.myapplication.LogInActivity;
 
 import com.example.myapplication.R;
 

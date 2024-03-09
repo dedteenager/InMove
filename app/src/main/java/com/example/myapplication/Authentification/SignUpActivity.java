@@ -1,11 +1,8 @@
-package com.example.myapplication;
+package com.example.myapplication.Authentification;
 
-import static android.content.ContentValues.TAG;
-
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,8 +10,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.R;
 import com.example.myapplication.home.Home_page;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -23,7 +22,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -35,6 +33,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText Email;
     private EditText Password;
     private EditText RePassword;
+    private FirebaseFirestore db;
     private FirebaseAuth mAuth;
     public void onStart() {
         super.onStart();
@@ -54,7 +53,7 @@ public class SignUpActivity extends AppCompatActivity {
         SharedPreferences sp2 =  getSharedPreferences("ForPassword", MODE_PRIVATE);
         ///
         mAuth=FirebaseAuth.getInstance();
-
+        db = FirebaseFirestore.getInstance();
         ///
         Login=findViewById(R.id.login);
         View.OnClickListener oclBtnGoToReg = new View.OnClickListener() {
@@ -84,6 +83,28 @@ public class SignUpActivity extends AppCompatActivity {
                                     // Sign in success, update UI with the signed-in user's information
 
                                     FirebaseUser user = mAuth.getCurrentUser();
+
+                                    Map<String, Object> userMap = new HashMap<>();
+                                    userMap.put("email", Email.getText().toString());
+                                    userMap.put("status", "active");
+
+                                    // Add user data to Firestore Database
+                                    db.collection("users").document(user.getUid()).set(userMap)
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Intent intent = new Intent(SignUpActivity.this, LogInActivity.class);
+                                                    startActivity(intent);
+                                                    SignUpActivity.this.finish();
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Toast.makeText(SignUpActivity.this, "Failed to add user to Firestore", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+
                                     Intent intent = new Intent(SignUpActivity.this, LogInActivity.class);
                                     startActivity(intent);
                                     SignUpActivity.this.finish();
@@ -144,4 +165,27 @@ public class SignUpActivity extends AppCompatActivity {
 
         };
         SignUp.setOnClickListener(oclBtnSignUp);
-}}
+}
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setIcon(R.drawable.icon)
+                .setTitle(R.string.app_name)
+                .setMessage("Выйти из приложения?")
+                .setPositiveButton("Да", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                })
+                .show();
+
+    }
+
+}
