@@ -1,8 +1,11 @@
 package com.example.myapplication.Authentification;
 
+import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +25,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -32,6 +36,7 @@ public class SignUpActivity extends AppCompatActivity {
     private Button SignUp;
     private EditText Email;
     private EditText Password;
+    private EditText editName;
     private EditText RePassword;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
@@ -68,6 +73,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         Login.setOnClickListener(oclBtnGoToReg);
         SignUp = findViewById(R.id.btnLogIn);
+        editName = findViewById(R.id.editName);
         Email = findViewById(R.id.editEmail);
         Password = findViewById(R.id.editPassword);
       //  RePassword = findViewById(R.id.repeatPassword);
@@ -81,12 +87,19 @@ public class SignUpActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     // Sign in success, update UI with the signed-in user's information
+                                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                    String userId = user.getUid();
 
-                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                                    DocumentReference userRef = db.collection("users").document(userId).collection("Progress").document("WimMethod");
 
                                     Map<String, Object> userMap = new HashMap<>();
+                                    userMap.put("nick", editName.getText().toString());
                                     userMap.put("email", Email.getText().toString());
                                     userMap.put("status", "active");
+
+                                    Map<String, Object> progressMap = new HashMap<>();
+                                    progressMap.put("days","8");
 
                                     // Add user data to Firestore Database
                                     db.collection("users").document(user.getUid()).set(userMap)
@@ -105,6 +118,19 @@ public class SignUpActivity extends AppCompatActivity {
                                                 }
                                             });
 
+                                    userRef.set(progressMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Log.d(TAG, "DocumentSnapshot successfully written!");
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Log.w(TAG, "Error writing document", e);
+                                                }
+                                            });
+
                                     Intent intent = new Intent(SignUpActivity.this, LogInActivity.class);
                                     startActivity(intent);
                                     SignUpActivity.this.finish();
@@ -117,50 +143,6 @@ public class SignUpActivity extends AppCompatActivity {
                                 }
                             }
                         });
-
-
-            //        if(TextUtils.isEmpty(Email.getText().toString()) || Email.getText().toString()==" " || !Email.getText().toString().contains("@")||Email.getText().toString().length()<5){
-            //            Toast toast = Toast.makeText(getApplicationContext(),
-            //                   "Ошибка в поле Email!", Toast.LENGTH_SHORT);
-            //          toast.show();
-            //        } else if (TextUtils.isEmpty(Password.getText().toString()) || Password.getText().toString().length()<8) {
-            //            Toast toast = Toast.makeText(getApplicationContext(),
-            //                    "Поле пароля должно быть пустым и менее 8 символов", Toast.LENGTH_SHORT);
-            //            toast.show();
-            //        } else if (!Password.getText().toString().equals(RePassword.getText().toString())) {
-            //            Toast toast = Toast.makeText(getApplicationContext(),
-            //                    "Пароли не совпадают!", Toast.LENGTH_SHORT);
-            //            toast.show();
-            //        }
-            //        else {
-            //            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            //            // Create a new user with a first and last name
-            //            Map<String, Object> user = new HashMap<>();
-            //            user.put("name"," ");
-            //            user.put("email", Email.getText().toString());
-            //            user.put("password", Password.getText().toString());
-//
-// Add a new// document with a generated ID
-            //            db.collection("Users")
-            //                    .add(user)
-            //                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            //                        @Override
-            //                        public void onSuccess(DocumentReference documentReference) {
-            //                            Intent intent = new Intent(SignUpActivity.this, LogInActivity.class);
-            //                            startActivity(intent);
-            //                            SignUpActivity.this.finish();
-            //                        }
-            //                    })
-            //                    .addOnFailureListener(new OnFailureListener() {
-            //                        @Override
-            //                        public void onFailure(@NonNull Exception e) {
-            //                            Toast toast = Toast.makeText(getApplicationContext(),
-            //                                    "Пользователь не найден", Toast.LENGTH_SHORT);
-            //                            toast.show();
-            //                        }
-            //                    });
-            //        }
-//
             };
 
         };

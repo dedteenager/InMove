@@ -23,6 +23,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.joining_from;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class Home_page extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -30,7 +34,11 @@ public class Home_page extends AppCompatActivity implements BottomNavigationView
     private static final String TAG = "Home_page";
 
     BottomNavigationView bottomNavigationView;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    String userId = user.getUid();
 
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    DocumentReference docRef = db.collection("users").document(userId);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,6 +144,7 @@ public class Home_page extends AppCompatActivity implements BottomNavigationView
 
 
     Homes_fragment Homes_fragment = new Homes_fragment();
+    Tracker_fragment Tracker_fragment = new Tracker_fragment();
     mealFragment mealFragment = new mealFragment();
     workoutFragment workoutFragment = new workoutFragment();
     moreFragment moreFragment = new moreFragment();
@@ -150,7 +159,7 @@ public class Home_page extends AppCompatActivity implements BottomNavigationView
                 return true;
 
             case R.id.navigation_Meal:
-                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).replace(R.id.container, mealFragment).commit();
+                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).replace(R.id.container, Tracker_fragment).commit();
                 return true;
 
             case R.id.navigation_Workout:

@@ -90,7 +90,7 @@ public class LogInActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                                                        Log.d(TAG, "signInWithEmail:success");
+                                    Log.d(TAG, "signInWithEmail:success");
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     Intent intent = new Intent(LogInActivity.this, Home_page.class);
                                     startActivity(intent);

@@ -57,16 +57,17 @@
 
                     android:id="@+id/tbHello"
                     android:layout_width="match_parent"
-                    android:layout_height="73dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:fontFamily="sans-serif-condensed"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingLeft="20dp"
+                    android:autoText="true"
+                    android:fontFamily="@font/roboto"
+                    android:hint="Начать"
+                    android:padding="10dp"
+                    android:textAlignment="center"
                     android:textColor="#000000"
-                    android:textSize="35dp"
-                    android:textStyle="bold" />
-
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:autoSizeTextType="uniform" />
 
                 <TextView
                     android:id="@+id/stop_watch"
