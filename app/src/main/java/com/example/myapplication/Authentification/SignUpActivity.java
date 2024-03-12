@@ -91,16 +91,23 @@ public class SignUpActivity extends AppCompatActivity {
                                     String userId = user.getUid();
 
                                     FirebaseFirestore db = FirebaseFirestore.getInstance();
-                                    DocumentReference userRef = db.collection("users").document(userId).collection("Progress").document("WimMethod");
+                                    DocumentReference wim = db.collection("users").document(userId).collection("Progress").document("WimMethod");
+                                    DocumentReference khatkha = db.collection("users").document(userId).collection("Progress").document("Khatkha");
+                                    DocumentReference detka = db.collection("users").document(userId).collection("Progress").document("Detka");
 
                                     Map<String, Object> userMap = new HashMap<>();
                                     userMap.put("nick", editName.getText().toString());
                                     userMap.put("email", Email.getText().toString());
                                     userMap.put("status", "active");
 
-                                    Map<String, Object> progressMap = new HashMap<>();
-                                    progressMap.put("days","8");
+                                    Map<String, Object> progressMapWim = new HashMap<>();
+                                    progressMapWim.put("days","8");
 
+                                    Map<String, Object> progressMapKhatkha = new HashMap<>();
+                                    progressMapKhatkha.put("days","1");
+
+                                    Map<String, Object> progressMapDetka = new HashMap<>();
+                                    progressMapDetka.put("days","3");
                                     // Add user data to Firestore Database
                                     db.collection("users").document(user.getUid()).set(userMap)
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -118,7 +125,7 @@ public class SignUpActivity extends AppCompatActivity {
                                                 }
                                             });
 
-                                    userRef.set(progressMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    wim.set(progressMapWim).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
                                                     Log.d(TAG, "DocumentSnapshot successfully written!");
@@ -131,6 +138,30 @@ public class SignUpActivity extends AppCompatActivity {
                                                 }
                                             });
 
+                                    khatkha.set(progressMapKhatkha).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Log.d(TAG, "DocumentSnapshot successfully written!");
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Log.w(TAG, "Error writing document", e);
+                                                }
+                                            });
+                                    detka.set(progressMapDetka).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Log.d(TAG, "DocumentSnapshot successfully written!");
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Log.w(TAG, "Error writing document", e);
+                                                }
+                                            });
                                     Intent intent = new Intent(SignUpActivity.this, LogInActivity.class);
                                     startActivity(intent);
                                     SignUpActivity.this.finish();
@@ -143,6 +174,8 @@ public class SignUpActivity extends AppCompatActivity {
                                 }
                             }
                         });
+
+
             };
 
         };

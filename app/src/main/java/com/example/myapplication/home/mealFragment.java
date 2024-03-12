@@ -32,13 +32,6 @@ TextView proteins;
                 startActivity(intent);
             }
         });
-
-
-
-
-
-
-
         return view;
     }
 

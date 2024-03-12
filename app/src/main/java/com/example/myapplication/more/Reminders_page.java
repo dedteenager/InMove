@@ -39,7 +39,7 @@ public class Reminders_page extends AppCompatActivity implements TimePickerDialo
         });
 
 
-        mTextView = findViewById(R.id.textView);
+        mTextView = findViewById(R.id.wimLayout);
         Button buttonTimePicker = findViewById(R.id.button_timepicker);
         buttonTimePicker.setOnClickListener(new View.OnClickListener() {
             @Override

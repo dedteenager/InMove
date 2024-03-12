@@ -58,7 +58,7 @@ public class Homes_fragment extends Fragment {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                       tbHello.setText("Приятно снова тебя видеть, "+document.getString("nick"));
+                       tbHello.setText("Здравствуй, "+document.getString("nick"));
 
                     } else {
                         Log.d(TAG, "No such document");

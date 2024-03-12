@@ -24,7 +24,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Tracker_fragment extends Fragment {
 
-    private LinearLayout daysLayout;
+    private LinearLayout hofLayout;
+    private LinearLayout detkaLayout;
+    private LinearLayout khatkhaLayout;
 
     @Nullable
     @Override
@@ -33,15 +35,16 @@ public class Tracker_fragment extends Fragment {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String userId = user.getUid();
-        DocumentReference progressRef = db.collection("users").document(userId)
-                .collection("Progress").document("WimMethod");
-        progressRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        DocumentReference wim = db.collection("users").document(userId).collection("Progress").document("WimMethod");
+        DocumentReference khatkha = db.collection("users").document(userId).collection("Progress").document("Khatkha");
+        DocumentReference detka = db.collection("users").document(userId).collection("Progress").document("Detka");
+        wim.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        daysLayout = view.findViewById(R.id.daysLayout);
+                        hofLayout = view.findViewById(R.id.hofLayout);
 
                         int totalDays = 21;
                         int currentDay = 0;
@@ -59,7 +62,7 @@ public class Tracker_fragment extends Fragment {
                                 circle.setBackgroundResource(R.drawable.circle_empty);
                             }
 
-                            daysLayout.addView(circle);
+                            hofLayout.addView(circle);
                         }
 
                     } else {
@@ -71,7 +74,77 @@ public class Tracker_fragment extends Fragment {
             }
         });
 
+        khatkha.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        khatkhaLayout = view.findViewById(R.id.khatkhaLayout);
 
+                        int totalDays = 21;
+                        int currentDay = 0;
+                        currentDay = Integer.parseInt(document.getString("days"));
+                        for (int i = 1; i <= totalDays; i++) {
+                            View circle = new View(getContext());
+                            int size = 30;
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(size, size);
+                            params.setMargins(5, 0, 5, 0);
+                            circle.setLayoutParams(params);
+
+                            if (i <= currentDay) {
+                                circle.setBackgroundResource(R.drawable.circle_filled);
+                            } else {
+                                circle.setBackgroundResource(R.drawable.circle_empty);
+                            }
+
+                            khatkhaLayout.addView(circle);
+                        }
+
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+
+        detka.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        detkaLayout = view.findViewById(R.id.detkaLayout);
+
+                        int totalDays = 21;
+                        int currentDay = 0;
+                        currentDay = Integer.parseInt(document.getString("days"));
+                        for (int i = 1; i <= totalDays; i++) {
+                            View circle = new View(getContext());
+                            int size = 30;
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(size, size);
+                            params.setMargins(5, 0, 5, 0);
+                            circle.setLayoutParams(params);
+
+                            if (i <= currentDay) {
+                                circle.setBackgroundResource(R.drawable.circle_filled);
+                            } else {
+                                circle.setBackgroundResource(R.drawable.circle_empty);
+                            }
+
+                            detkaLayout.addView(circle);
+                        }
+
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
 
         return view;
     }

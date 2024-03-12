@@ -24,7 +24,7 @@
             android:fontFamily="sans-serif-condensed"
             android:gravity="center"
             android:onClick="openAndroidBottomMenu"
-            android:text="Yoga For Weight Loss"
+            android:text="INMOVE"
             android:textColor="#FFFFFF"
             android:textSize="20dp"
             android:textStyle="bold"

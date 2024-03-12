@@ -30,14 +30,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
 
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="0dp"
         android:background="#FFFFFF">
 
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="#FFFFFF"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -45,104 +45,127 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:orientation="vertical">
-
+                android:layout_height="match_parent">
 
                 <TextView
 
                     android:id="@+id/tbHello"
+                    android:layout_width="221dp"
+                    android:layout_height="37dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="36dp"
+                    android:layout_marginEnd="28dp"
+                    android:autoText="false"
+                    android:fontFamily="@font/roboto"
+                    android:hint="Загрузка..."
+                    android:padding="10dp"
+                    android:textAlignment="textStart"
+                    android:textColor="#000000"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.006"
+                    app:layout_constraintStart_toEndOf="@+id/imageView"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="105dp"
+                    android:layout_height="97dp"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginTop="36dp"
+                    android:src="@drawable/icon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/stop_watch"
+                    android:layout_width="63dp"
+                    android:layout_height="57dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="11dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="28dp"
+                    android:drawableBottom="@drawable/stop"
+                    android:fontFamily="sans-serif-condensed"
+                    android:orientation="vertical"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView6"
+                    app:layout_constraintTop_toBottomOf="@+id/tbHello" />
+
+                <TextView
+
+                    android:id="@+id/text5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:autoText="true"
+                    android:layout_marginTop="28dp"
                     android:fontFamily="@font/roboto"
-                    android:hint="Начать"
-                    android:padding="10dp"
+                    android:padding="5dp"
+                    android:text="Выбери свой план"
                     android:textAlignment="center"
                     android:textColor="#000000"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    app:autoSizeTextType="uniform" />
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+                <Button
+                    android:id="@+id/beginner_yoga1"
+                    android:layout_width="350dp"
+                    android:layout_height="161dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/khatkha"
+                    android:contentDescription="@string/app_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text5" />
+
+                <Button
+                    android:id="@+id/inter_yoga2"
+                    android:layout_width="350dp"
+                    android:layout_height="170dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/ci"
+                    android:contentDescription="@string/app_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.488"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/beginner_yoga1" />
+
+                <Button
+                    android:id="@+id/advance_yoga1"
+                    android:layout_width="350dp"
+                    android:layout_height="170dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/moreimg"
+                    android:contentDescription="@string/app_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.488"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/inter_yoga2" />
 
                 <TextView
-                    android:id="@+id/stop_watch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="15dp"
-                    android:drawableBottom="@drawable/stop"
-                    android:fontFamily="sans-serif-condensed"
-                    android:orientation="vertical"
-                    android:text="Stop Watch"
-                    android:textColor="#000000"
-                    android:textSize="24sp" />
+                    android:id="@+id/textView6"
+                    android:layout_width="138dp"
+                    android:layout_height="51dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="8dp"
+                    android:padding="10dp"
+                    android:text="14 дней в приложении"
+                    android:textAlignment="textStart"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintStart_toEndOf="@+id/imageView"
+                    app:layout_constraintTop_toBottomOf="@+id/tbHello" />
 
-                <LinearLayout
-
-                    android:layout_width="match_parent"
-                    android:layout_height="666dp"
-                    android:background="#FFFFFF"
-                    android:orientation="vertical">
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="3" />
-
-
-                    <TextView
-
-                        android:id="@+id/text5"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:fontFamily="sans-serif-condensed"
-                        android:paddingLeft="20dp"
-                        android:text="Choose Your Plan"
-                        android:textAlignment="center"
-                        android:textColor="#1E1010"
-                        android:textSize="20sp" />
-
-
-                    <Button
-                        android:id="@+id/beginner_yoga1"
-                        android:layout_width="350dp"
-                        android:layout_height="161dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/yoga_beginner"
-                        android:contentDescription="@string/app_name" />
-
-
-                    <Button
-                        android:id="@+id/inter_yoga2"
-                        android:layout_width="350dp"
-                        android:layout_height="170dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/yoga_inter"
-                        android:contentDescription="@string/app_name" />
-
-                    <Button
-                        android:id="@+id/advance_yoga1"
-                        android:layout_width="350dp"
-                        android:layout_height="170dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/yoga_advance"
-                        android:contentDescription="@string/app_name" />
-
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
 

@@ -4,17 +4,46 @@
     android:orientation="vertical">
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Метод Вима Хофа"
+        android:textSize="24sp" />
+
+    <LinearLayout
+        android:id="@+id/hofLayout"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Детка Порфирия Корнеевича"
+        android:textSize="24sp" />
+
+    <LinearLayout
+        android:id="@+id/detkaLayout"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:orientation="horizontal"></LinearLayout>
+
+    <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Progress Tracker"
-        android:textSize="24sp"
-        android:layout_margin="16dp" />
+        android:layout_margin="16dp"
+        android:text="Хатха-Йога"
+        android:textSize="24sp" />
 
     <LinearLayout
-        android:id="@+id/daysLayout"
+        android:id="@+id/khatkhaLayout"
         android:layout_width="match_parent"
         android:layout_height="36dp"
-        android:orientation="horizontal" />
+        android:orientation="horizontal"
+        android:paddingStart="20dp"></LinearLayout>
 
 </LinearLayout>
