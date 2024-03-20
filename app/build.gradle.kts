@@ -33,7 +33,7 @@ android {
 }
 
 dependencies {
-
+    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation ("com.cocosw:bottomsheet:1.+@aar")
     implementation("androidx.appcompat:appcompat:1.6.1")
