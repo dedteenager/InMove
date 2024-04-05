@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".home.Homes_fragment">
+    tools:context=".home.Khatkha_fragment">
 
 
     <RelativeLayout
@@ -104,6 +104,7 @@
                             android:layout_width="180dp"
                             android:layout_height="match_parent"
                             android:background="#FFFFFF"
+                            android:clickable="true"
                             android:src="@drawable/sdf" />
 
                         <TextView
@@ -123,8 +124,11 @@
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingStart="10dp"
-                    android:paddingTop="10dp" />
+                    android:background="#EFEEEE"
+                    android:paddingStart="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="15dp"
+                    android:paddingBottom="10dp" />
 
             </LinearLayout>
         </ScrollView>

@@ -101,13 +101,13 @@ public class SignUpActivity extends AppCompatActivity {
                                     userMap.put("status", "active");
 
                                     Map<String, Object> progressMapWim = new HashMap<>();
-                                    progressMapWim.put("days","8");
+                                    progressMapWim.put("days","0");
 
                                     Map<String, Object> progressMapKhatkha = new HashMap<>();
-                                    progressMapKhatkha.put("days","1");
+                                    progressMapKhatkha.put("days","0");
 
                                     Map<String, Object> progressMapDetka = new HashMap<>();
-                                    progressMapDetka.put("days","3");
+                                    progressMapDetka.put("days","0");
                                     // Add user data to Firestore Database
                                     db.collection("users").document(user.getUid()).set(userMap)
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {

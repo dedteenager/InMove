@@ -1,7 +1,6 @@
 package com.example.myapplication.home;
 
 
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +10,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -29,29 +29,51 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
-public class Home_page extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class Home_page extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, Khatkha_fragment.OnFragmentInteractionListener, Wim_fragment.OnFragmentInteractionListener {
 
     private static final String TAG = "Home_page";
-
+    private static final String PREFS_FILE = "0";
+    SharedPreferences page;
     BottomNavigationView bottomNavigationView;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String userId = user.getUid();
-
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     DocumentReference docRef = db.collection("users").document(userId);
+    @Override
+    public void onButtonClickedKhatkha() {
+        page=getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
+        SharedPreferences.Editor prefEditor = page.edit();
+        prefEditor.putString(PREFS_FILE, "2");
+        prefEditor.apply();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, new Wim_fragment())
+                .addToBackStack(null)
+                .commit();
 
+    }
+
+    @Override
+    public void onButtonClickedWim() {
+        page=getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
+        SharedPreferences.Editor prefEditor = page.edit();
+        prefEditor.putString(PREFS_FILE, "1");
+        prefEditor.apply();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, new Khatkha_fragment())
+                .addToBackStack(null)
+                .commit();
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-
-
+        page=getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
         bottomNavigationView = findViewById(R.id.bottom_navigation_view);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
         bottomNavigationView.setSelectedItemId(R.id.navigation_home);
-
 
 
 
@@ -111,10 +133,6 @@ public class Home_page extends AppCompatActivity implements BottomNavigationView
 
     }
 
-
-
-
-
     @SuppressLint("MissingSuperCall")
     @Override
     public void onBackPressed() {
@@ -138,12 +156,8 @@ public class Home_page extends AppCompatActivity implements BottomNavigationView
 
     }
 
-
-
-
-
-
-    Homes_fragment Homes_fragment = new Homes_fragment();
+    Khatkha_fragment Khatkha_fragment = new Khatkha_fragment();
+    Wim_fragment Wim_fragment = new Wim_fragment();
     Tracker_fragment Tracker_fragment = new Tracker_fragment();
     mealFragment mealFragment = new mealFragment();
     workoutFragment workoutFragment = new workoutFragment();
@@ -153,9 +167,14 @@ public class Home_page extends AppCompatActivity implements BottomNavigationView
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
+        int value = Integer.parseInt(page.getString(PREFS_FILE,"0"));
         switch (item.getItemId()) {
             case R.id.navigation_home:
-                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).replace(R.id.container, Homes_fragment).commit();
+                if (value==2){
+                    getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).replace(R.id.container, Wim_fragment).commit();
+                }else{
+                    getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).replace(R.id.container, Khatkha_fragment).commit();
+                }
                 return true;
 
             case R.id.navigation_Meal:
@@ -169,9 +188,6 @@ public class Home_page extends AppCompatActivity implements BottomNavigationView
             case R.id.navigation_More:
                 getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).replace(R.id.container, moreFragment).commit();
                 return true;
-
-
-
         }
 
         return false;

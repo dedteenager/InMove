@@ -46,7 +46,7 @@ public class Tracker_fragment extends Fragment {
                     if (document.exists()) {
                         hofLayout = view.findViewById(R.id.hofLayout);
 
-                        int totalDays = 21;
+                        int totalDays = 30;
                         int currentDay = 0;
                         currentDay = Integer.parseInt(document.getString("days"));
                         for (int i = 1; i <= totalDays; i++) {
@@ -57,7 +57,7 @@ public class Tracker_fragment extends Fragment {
                             circle.setLayoutParams(params);
 
                             if (i <= currentDay) {
-                                circle.setBackgroundResource(R.drawable.circle_filled);
+                                circle.setBackgroundResource(R.drawable.circle_filled_orange);
                             } else {
                                 circle.setBackgroundResource(R.drawable.circle_empty);
                             }
@@ -82,7 +82,7 @@ public class Tracker_fragment extends Fragment {
                     if (document.exists()) {
                         khatkhaLayout = view.findViewById(R.id.khatkhaLayout);
 
-                        int totalDays = 21;
+                        int totalDays = 30;
                         int currentDay = 0;
                         currentDay = Integer.parseInt(document.getString("days"));
                         for (int i = 1; i <= totalDays; i++) {
@@ -93,7 +93,7 @@ public class Tracker_fragment extends Fragment {
                             circle.setLayoutParams(params);
 
                             if (i <= currentDay) {
-                                circle.setBackgroundResource(R.drawable.circle_filled);
+                                circle.setBackgroundResource(R.drawable.circle_filled_green);
                             } else {
                                 circle.setBackgroundResource(R.drawable.circle_empty);
                             }
@@ -118,7 +118,7 @@ public class Tracker_fragment extends Fragment {
                     if (document.exists()) {
                         detkaLayout = view.findViewById(R.id.detkaLayout);
 
-                        int totalDays = 21;
+                        int totalDays = 30;
                         int currentDay = 0;
                         currentDay = Integer.parseInt(document.getString("days"));
                         for (int i = 1; i <= totalDays; i++) {
@@ -129,7 +129,7 @@ public class Tracker_fragment extends Fragment {
                             circle.setLayoutParams(params);
 
                             if (i <= currentDay) {
-                                circle.setBackgroundResource(R.drawable.circle_filled);
+                                circle.setBackgroundResource(R.drawable.circle_filled_green);
                             } else {
                                 circle.setBackgroundResource(R.drawable.circle_empty);
                             }

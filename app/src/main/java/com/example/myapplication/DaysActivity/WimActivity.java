@@ -1,8 +1,12 @@
 package com.example.myapplication.DaysActivity;
 
+import static android.app.PendingIntent.getActivity;
+
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,7 +30,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class KhatkhaActivity extends AppCompatActivity {
+public class WimActivity extends AppCompatActivity {
     private Button btnNext;
     public int currentDayPub;
     public  DocumentReference docRefPub;
@@ -40,8 +44,10 @@ public class KhatkhaActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String userId = user.getUid();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference docRef = db.collection("users").document(userId).collection("Progress").document("Khatkha");
+        DocumentReference docRef = db.collection("users").document(userId).collection("Progress").document("WimMethod");
         docRefPub =docRef;
+
+
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -51,8 +57,8 @@ public class KhatkhaActivity extends AppCompatActivity {
                     currentDayPub=currentDay;
                     String[] daysVideos=new String[30];
 
-                    daysVideos[0]="sQRfp2Xp6U0";
-                    daysVideos[1]="8kSjeuBVqjs";
+                    daysVideos[0]="8kSjeuBVqjs";
+                    daysVideos[1]="sQRfp2Xp6U0";
                     daysVideos[2]="--pnreEPBLE";
                     daysVideos[3]="VjQvtE_el7w";
                     daysVideos[4]="TJ_7-n02nEg";
@@ -122,16 +128,16 @@ public class KhatkhaActivity extends AppCompatActivity {
         builder.setPositiveButton("Завершить", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Map<String, Object> progressMapKhatkha = new HashMap<>();
+                Map<String, Object> progressMapWimMethod = new HashMap<>();
                 String nextDayStr=Integer.toString(currentDayPub+1);
                 if(Integer.parseInt(nextDayStr)==30){
                     nextDayStr="0";
                 }
-                progressMapKhatkha.put("days",nextDayStr);
-                docRefPub.update(progressMapKhatkha);
-                Intent intent = new Intent(KhatkhaActivity.this, Home_page.class);
+                progressMapWimMethod.put("days",nextDayStr);
+                docRefPub.update(progressMapWimMethod);
+                Intent intent = new Intent(WimActivity.this, Home_page.class);
                 startActivity(intent);
-                KhatkhaActivity.this.finish();
+                WimActivity.this.finish();
             }
         });
         builder.show();

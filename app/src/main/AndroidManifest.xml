@@ -32,8 +32,11 @@
         <activity android:name=".Authentification.SignUpActivity" />
         <activity android:name=".slider.slider" />
         <activity android:name=".home.Tracker_fragment" />
+        <activity android:name=".home.Wim_fragment" />
+        <activity android:name=".home.Khatkha_fragment" />
         <activity android:name=".Authentification.ForgotPasswordActivity" />
         <activity android:name=".DaysActivity.KhatkhaActivity" />
+        <activity android:name=".DaysActivity.WimActivity" />
         <activity android:name=".mainpage.MainActivity"
             android:exported="true">
             <intent-filter>

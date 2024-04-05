@@ -5,6 +5,7 @@ import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,14 +19,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.content.SharedPreferences;
 
 import com.example.myapplication.DaysActivity.KhatkhaActivity;
+import com.example.myapplication.DaysActivity.WimActivity;
 import com.example.myapplication.R;
 
-import com.example.myapplication.stopwatch.stop_watch_page;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,23 +34,21 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
-public class Homes_fragment extends Fragment {
-    Button btn_yoga1,yoga2;
-    TextView stop_watch;
+public class Wim_fragment extends Fragment {
     Context context;
-    private TextView currentTV;
     TextView tbHello;
+    private ImageView WimSwitch;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-
+    private Wim_fragment.OnFragmentInteractionListener mListener;
     private List<String> dataList = new ArrayList<>();
+
+
     @SuppressLint("MissingInflatedId")
     @Override
     @Nullable
@@ -60,9 +58,10 @@ public class Homes_fragment extends Fragment {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference docRef = db.collection("users").document(userId);
-        View view = inflater.inflate(R.layout.fragment_homes_fragment, container, false);
+        View view = inflater.inflate(R.layout._wim_home_fragment, container, false);
         context = view.getContext();
-       tbHello = view.findViewById(R.id.tbHello);
+        tbHello = view.findViewById(R.id.tbHello);
+        WimSwitch=view.findViewById(R.id.imageView3);
 
         for (int i = 1; i <= 30; i++) {
             dataList.add("День " + i);
@@ -76,26 +75,22 @@ public class Homes_fragment extends Fragment {
         adapter = new MyAdapter(dataList);
         recyclerView.setAdapter(adapter);
 
-       //currentTV = view.findViewById(R.id.currentTV);
+        int itemOffset = getResources().getDimensionPixelSize(R.dimen.item_offset);
+        recyclerView.addItemDecoration(new ItemOffsetDecoration(itemOffset));
 
-       // SimpleDateFormat sdf = new SimpleDateFormat("'Сегодня 'dd-MM-yyyy'");
-       // String currentDateAndTime = sdf.format(new Date());
-       // currentTV.setText(currentDateAndTime);
-        /// stop_watch = view.findViewById(R.id.stop_watch);
-       /// stop_watch.setOnClickListener(new View.OnClickListener() {
-      ///      @Override
-       ///     public void onClick(View view) {
-        ///        Intent intent = new Intent(context.getApplicationContext(), stop_watch_page.class);
-       ///         startActivity(intent);
-       ///     }
-      ///  });
+        WimSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onButtonClickedWim();
+            }
+        });
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                       tbHello.setText("Здравствуй, "+document.getString("nick"));
+                        tbHello.setText("Здравствуй, "+document.getString("nick"));
 
                     } else {
                         Log.d(TAG, "No such document");
@@ -108,7 +103,19 @@ public class Homes_fragment extends Fragment {
         return view;
 
     }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof Wim_fragment.OnFragmentInteractionListener) {
+            mListener = (Wim_fragment.OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString() + " must implement OnFragmentInteractionListener");
+        }
+    }
 
+    public interface OnFragmentInteractionListener {
+        void onButtonClickedWim();
+    }
     private class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         private List<String> dataList;
@@ -136,14 +143,15 @@ public class Homes_fragment extends Fragment {
 
         }
 
+
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder,int position) {
 
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             String userId = user.getUid();
-            DocumentReference khatkha = db.collection("users").document(userId).collection("Progress").document("Khatkha");
-            khatkha.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            DocumentReference wim = db.collection("users").document(userId).collection("Progress").document("WimMethod");
+            wim.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {
@@ -157,7 +165,7 @@ public class Homes_fragment extends Fragment {
                                 holder.button.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        Intent intent = new Intent(getActivity(), KhatkhaActivity.class);
+                                        Intent intent = new Intent(getActivity(), WimActivity.class);
                                         startActivity(intent);
                                     }
                                 });
@@ -182,5 +190,16 @@ public class Homes_fragment extends Fragment {
         }
     }
 
+    public class ItemOffsetDecoration extends RecyclerView.ItemDecoration {
+        private final int mItemOffset;
 
+        public ItemOffsetDecoration(int itemOffset) {
+            mItemOffset = itemOffset;
+        }
+
+        @Override
+        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+            outRect.set(mItemOffset, mItemOffset, mItemOffset, mItemOffset);
+        }
+    }
 }
