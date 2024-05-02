@@ -1,9 +1,14 @@
 package com.example.myapplication.DaysActivity;
 
+
+
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,11 +17,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.home.Home_page;
+
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerListener;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,15 +38,30 @@ import java.util.Map;
 
 public class KhatkhaActivity extends AppCompatActivity {
     private Button btnNext;
+    private Button btnCancel;
     public int currentDayPub;
     public  DocumentReference docRefPub;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout._everyday_activity);
+
+        btnCancel=findViewById(R.id.btnCancel);
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    Intent intent = new Intent(KhatkhaActivity.this, Home_page.class);
+                    startActivity(intent);
+                    KhatkhaActivity.this.finish();
+            }
+        });
+
         btnNext=findViewById(R.id.btnNext);
         YouTubePlayerView youTubePlayerView = findViewById(R.id.youtube_player_view);
         getLifecycle().addObserver(youTubePlayerView);
+
+        youTubePlayerView.setEnableAutomaticInitialization(false);
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String userId = user.getUid();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -49,7 +74,7 @@ public class KhatkhaActivity extends AppCompatActivity {
                 if (documentSnapshot.exists()) {
                     int currentDay = Integer.parseInt(documentSnapshot.getString("days"));
                     currentDayPub=currentDay;
-                    String[] daysVideos=new String[30];
+                    String[] daysVideos=new String[21];
 
                     daysVideos[0]="sQRfp2Xp6U0";
                     daysVideos[1]="8kSjeuBVqjs";
@@ -72,22 +97,64 @@ public class KhatkhaActivity extends AppCompatActivity {
                     daysVideos[18]="vBCNlxFTkJk";
                     daysVideos[19]="c0-hvjV2A5Y";
                     daysVideos[20]="hb0XLX0b4Y4";
-                    daysVideos[21]="H2I6V0NlaHg";
-                    daysVideos[22]="fx7tkHLD3RY";
-                    daysVideos[23]="TJ_7-n02nEg";
-                    daysVideos[24]="JesWs7SALfQ";
-                    daysVideos[25]="vBCNlxFTkJk";
-                    daysVideos[26]="c0-hvjV2A5Y";
-                    daysVideos[27]="hb0XLX0b4Y4";
-                    daysVideos[28]="H2I6V0NlaHg";
-                    daysVideos[29]="fx7tkHLD3RY";
-                    youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+
+                    YouTubePlayerListener listener = new YouTubePlayerListener() {
                         @Override
                         public void onReady(@NonNull YouTubePlayer youTubePlayer) {
                             String videoId = daysVideos[currentDay];
                             youTubePlayer.loadVideo(videoId, 0);
                         }
-                    });
+
+                        @Override
+                        public void onStateChange(@NonNull YouTubePlayer youTubePlayer, @NonNull PlayerConstants.PlayerState playerState) {
+
+                        }
+
+                        @Override
+                        public void onPlaybackQualityChange(@NonNull YouTubePlayer youTubePlayer, @NonNull PlayerConstants.PlaybackQuality playbackQuality) {
+
+                        }
+
+                        @Override
+                        public void onPlaybackRateChange(@NonNull YouTubePlayer youTubePlayer, @NonNull PlayerConstants.PlaybackRate playbackRate) {
+
+                        }
+
+                        @Override
+                        public void onError(@NonNull YouTubePlayer youTubePlayer, @NonNull PlayerConstants.PlayerError playerError) {
+
+                        }
+
+                        @Override
+                        public void onCurrentSecond(@NonNull YouTubePlayer youTubePlayer, float v) {
+
+                        }
+
+                        @Override
+                        public void onVideoDuration(@NonNull YouTubePlayer youTubePlayer, float v) {
+
+                        }
+
+                        @Override
+                        public void onVideoLoadedFraction(@NonNull YouTubePlayer youTubePlayer, float v) {
+
+                        }
+
+                        @Override
+                        public void onVideoId(@NonNull YouTubePlayer youTubePlayer, @NonNull String s) {
+
+                        }
+
+                        @Override
+                        public void onApiChange(@NonNull YouTubePlayer youTubePlayer) {
+
+                        }
+                    };
+                    IFramePlayerOptions iframePlayerOptions = new IFramePlayerOptions.Builder()
+                            .controls(1)
+                            .autoplay(1)
+                            .build();
+                    youTubePlayerView.initialize(listener,iframePlayerOptions);
                 } else {
                     Log.d("TAG", "No such document");
                 }
@@ -104,6 +171,7 @@ public class KhatkhaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showCompletionScreen();
+
             }
         });
     }
@@ -112,8 +180,10 @@ public class KhatkhaActivity extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        if (currentDayPub>29){
-
+        if (currentDayPub==20){
+            Map<String, Object> progressMapKhatkha = new HashMap<>();
+            progressMapKhatkha.put("completed",true);
+            docRefPub.update(progressMapKhatkha);
             builder.setMessage("Поздравляю вы закончили курс!");
         }
         else{
@@ -124,7 +194,7 @@ public class KhatkhaActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 Map<String, Object> progressMapKhatkha = new HashMap<>();
                 String nextDayStr=Integer.toString(currentDayPub+1);
-                if(Integer.parseInt(nextDayStr)==30){
+                if(Integer.parseInt(nextDayStr)==21){
                     nextDayStr="0";
                 }
                 progressMapKhatkha.put("days",nextDayStr);

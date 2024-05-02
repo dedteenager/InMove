@@ -22,6 +22,7 @@ public class stop_watch_page extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+
             }
         });
 

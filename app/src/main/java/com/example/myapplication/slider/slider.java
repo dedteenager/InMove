@@ -72,6 +72,7 @@ public class slider extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 screenPager.setCurrentItem(mList.size());
+
             }
         });
 
@@ -102,6 +103,7 @@ public class slider extends AppCompatActivity {
                 startActivity(mainActivity);
                 savePrefsData();
                 finish();
+
             }
         });
     }

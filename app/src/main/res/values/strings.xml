@@ -12,6 +12,7 @@
     <string name="one">1/3</string>
     <string name="two">2/3</string>
     <string name="three">3/3</string>
+    <string name="aap_pub">ca-app-pub-3940256099942544~3347511713</string>
     <string name="login"><u>Вход</u></string>
     <string name="sinup"><u>Регистрация</u></string>
 

@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@color/gray"
 
+    android:orientation="vertical"
     tools:context=".more.feedback_page">
 
 
@@ -13,7 +14,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#2E8B57"
+        android:background="@color/green"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
@@ -24,7 +25,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_baseline_arrow_back_24"
-            android:text="brandvidiya@gmail.com"
+            android:fontFamily="@font/oswald"
+            android:text="Отзыв"
             android:textColor="#FFFFFF"
             android:textSize="20dp"
             android:textStyle="bold" />
@@ -33,14 +35,13 @@
     </androidx.appcompat.widget.Toolbar>
 
 
-
-
     <TextView
-        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="To:"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/oswald"
+        android:text="To:"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <EditText
@@ -50,12 +51,15 @@
         android:layout_height="50dp"
         android:layout_marginLeft="15dp"
         android:background="@drawable/edit_bg"
+        android:fontFamily="@font/lora"
         android:inputType="textEmailAddress" />
+
     <TextView
 
-        android:layout_marginLeft="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:fontFamily="@font/oswald"
         android:text="Subject:"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -66,12 +70,15 @@
         android:layout_height="50dp"
         android:layout_marginLeft="15dp"
         android:background="@drawable/edit_bg"
+        android:fontFamily="@font/lora"
         android:inputType="textEmailSubject" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Message:"
         android:layout_marginLeft="15dp"
+        android:fontFamily="@font/oswald"
+        android:text="Message:"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <EditText
@@ -80,17 +87,20 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:background="@drawable/edit_bg"
+        android:fontFamily="@font/lora"
         android:gravity="start|top"
         android:lines="10" />
+
     <Button
-        android:layout_marginTop="15dp"
-        android:textColor="#FFF"
-        android:background="@drawable/btn_gradient_style"
         android:id="@+id/button_send"
-        android:layout_gravity="center"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:text="s e n d" />
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/item_list_btn"
+        android:fontFamily="@font/oswald"
+        android:text="Отправить"
+        android:textColor="#FFF" />
 
 
 </LinearLayout>

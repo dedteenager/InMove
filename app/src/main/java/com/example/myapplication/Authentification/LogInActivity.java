@@ -5,10 +5,13 @@ import static android.content.ContentValues.TAG;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +20,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
+import com.example.myapplication.home.CloseActivity;
 import com.example.myapplication.home.Home_page;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -31,6 +35,7 @@ public class LogInActivity extends AppCompatActivity {
     private EditText Password;
     private FirebaseAuth mAuth;
     private Button LoginBtn;
+    private ImageView btnGoogleLogin;
     private TextView btnToForgotPassword;
 
     @Override
@@ -47,9 +52,10 @@ public class LogInActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         mAuth = FirebaseAuth.getInstance();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
+        setContentView(R.layout._login);
         SignUp = findViewById(R.id.btnToSignUp);
         LoginBtn=findViewById(R.id.btnLogIn);
+        btnGoogleLogin=findViewById(R.id.btnGoogleLogin);
         Email=findViewById(R.id.editEmailIn);
         Password=findViewById(R.id.editPasswordIn);
         btnToForgotPassword=findViewById(R.id.btnToForgotPasswordr);
@@ -60,6 +66,7 @@ public class LogInActivity extends AppCompatActivity {
                 Intent intent = new Intent(LogInActivity.this, SignUpActivity.class);
                 startActivity(intent);
                 LogInActivity.this.finish();
+
             }
         };
 
@@ -78,31 +85,45 @@ public class LogInActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(LogInActivity.this, ForgotPasswordActivity.class);
                 startActivity(intent);
+
             }
         };
 
         View.OnClickListener oclBtnGoToHome = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String email = Email.getText().toString().trim();
+                String pas = Password.getText().toString().trim();
 
-                mAuth.signInWithEmailAndPassword(Email.getText().toString(), Password.getText().toString())
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    Log.d(TAG, "signInWithEmail:success");
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    Intent intent = new Intent(LogInActivity.this, Home_page.class);
-                                    startActivity(intent);
-                                    LogInActivity.this.finish();
-                                } else {
-                                                                      Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                    Toast toast = Toast.makeText(getApplicationContext(),
-                                            "Authentication failed.", Toast.LENGTH_SHORT);
-                                    toast.show();
+                if (!TextUtils.isEmpty(email)&!TextUtils.isEmpty(pas)) {
+                    mAuth.signInWithEmailAndPassword(Email.getText().toString(), Password.getText().toString())
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        Log.d(TAG, "signInWithEmail:success");
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        Intent intent = new Intent(LogInActivity.this, Home_page.class);
+                                        startActivity(intent);
+                                        LogInActivity.this.finish();
+                                    } else {
+                                        Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                        Toast toast = Toast.makeText(getApplicationContext(),
+                                                "Authentication failed.", Toast.LENGTH_SHORT);
+                                        toast.show();
+                                    }
                                 }
-                            }
-                        });
+                            });
+
+                } else if(TextUtils.isEmpty(email)){
+                    Email.setError("Поле Email не может быть пустым");
+                }else if(TextUtils.isEmpty(pas)){
+                    Password.setError("Поле Пароля не может быть пустым");
+                }else{
+                    Email.setError("Поле Email не может быть пустым");
+                    Password.setError("Поле Пароля не может быть пустым");
+                }
+
             }
         };
         LoginBtn.setOnClickListener(oclBtnGoToHome);
@@ -117,7 +138,10 @@ public class LogInActivity extends AppCompatActivity {
                 .setPositiveButton("Да", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        finish();
+                        Intent intent = new Intent(LogInActivity.this, CloseActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        LogInActivity.this.finish();
                     }
                 })
                 .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {

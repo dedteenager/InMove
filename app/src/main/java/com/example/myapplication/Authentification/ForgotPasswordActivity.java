@@ -41,6 +41,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 } else {
                     edtEmail.setError("Поле Email не может быть пустым");
                 }
+
             }
 
             private void ResetPassword() {

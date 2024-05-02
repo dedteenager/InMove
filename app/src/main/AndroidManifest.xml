@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
@@ -16,27 +17,43 @@
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Diet.meals_page" />
+
         <activity android:name=".Diet.proteins_page" />
-        <activity android:name=".more.chart_page" />
-        <activity android:name=".more.setting_page" />
-        <activity android:name=".more.feedback_page" />
-        <activity android:name=".more.human_body" />
+        <activity android:name=".more.setting_page"
+            android:theme="@style/greenbar"/>
+        <activity android:name=".more.feedback_page"
+            android:theme="@style/greenbar"/>
+        <activity android:name=".more.human_body"
+            android:theme="@style/greenbar"/>
         <activity android:name=".joining_from" />
-        <activity android:name=".more.Calculate_page" />
-        <activity android:name=".more.Calendar_page" />
-        <activity android:name=".more.Reminders_page" />
+        <activity android:name=".more.Calculate_page"
+            android:theme="@style/greenbar"/>
+        <activity android:name=".more.Calendar_page"
+            android:theme="@style/greenbar"/>
+        <activity android:name=".more.Reminders_page"
+            android:theme="@style/greenbar"/>
         <activity android:name=".stopwatch.stop_watch_page" />
-        <activity android:name=".home.Home_page" />
+        <activity android:name=".home.Home_page"
+            android:theme="@style/greenbar"/>
         <activity android:name=".Authentification.LogInActivity" />
         <activity android:name=".Authentification.SignUpActivity" />
         <activity android:name=".slider.slider" />
-        <activity android:name=".home.Tracker_fragment" />
-        <activity android:name=".home.Wim_fragment" />
-        <activity android:name=".home.Khatkha_fragment" />
+        <activity android:name=".home.Tracker_fragment"
+            android:theme="@style/greenbar"/>
+        <activity android:name=".home.CloseActivity"/>
+        <activity android:name=".home.Wim_fragment"
+            android:theme="@style/greenbar"/>
+        <activity android:name=".home.Khatkha_fragment"
+            android:theme="@style/greenbar"/>
+        <activity android:name=".home.Choose_fragment"
+            android:theme="@style/greenbar"/>
+        <activity android:name=".home.None_fragment"
+            android:theme="@style/greenbar"/>
         <activity android:name=".Authentification.ForgotPasswordActivity" />
         <activity android:name=".DaysActivity.KhatkhaActivity" />
         <activity android:name=".DaysActivity.WimActivity" />
+        <activity android:name=".DaysActivity.NoneActivity" />
+        <activity android:name=".DaysActivity.KnowledgePageActivity" />
         <activity android:name=".mainpage.MainActivity"
             android:exported="true">
             <intent-filter>
@@ -47,6 +64,11 @@
         </activity>
 
         <receiver android:name=".more.AlertReceiver" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
+
     </application>
 
 </manifest>

@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Simple Calendar</title>
+    <title>Календарь</title>
 
     <style>
 @main-bg:rgb(40,40,59);
@@ -109,20 +109,12 @@ thead td {
 #btnPrev {
   float:left;
   margin-bottom:20px;
-  &:before {
-    content:'\f104';
-    font-family:FontAwesome;
-    padding-right:4px;
-  }
+
 }
 #btnNext {
   float:right;
   margin-bottom:20px;
-  &:after {
-    content:'\f105';
-    font-family:FontAwesome;
-    padding-left:4px;
-  }
+
 }
 #btnPrev, #btnNext {
   background:transparent;
@@ -145,8 +137,8 @@ thead td {
 
 <body>
 <div class="calendar-wrapper">
-    <button id="btnPrev" type="button">Prev</button>
-    <button id="btnNext" type="button">Next</button>
+    <button id="btnPrev" type="button">Назад</button>
+    <button id="btnNext" type="button">Далее</button>
     <div id="divCal"></div>
 </div>
 
@@ -160,17 +152,17 @@ thead td {
 
   // Days of week, starting on Sunday
   this.DaysOfWeek = [
-    'Sun',
-    'Mon',
-    'Tue',
-    'Wed',
-    'Thu',
-    'Fri',
-    'Sat'
+    'Вс',
+    'Пн',
+    'Вт',
+    'Ср',
+    'Чт',
+    'Пт',
+    'Сб'
   ];
 
   // Months, stating on January
-  this.Months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
+  this.Months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь' ];
 
   // Set the current month, year
   var d = new Date();

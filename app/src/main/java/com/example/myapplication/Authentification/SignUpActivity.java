@@ -5,6 +5,7 @@ import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
+import com.example.myapplication.home.CloseActivity;
 import com.example.myapplication.home.Home_page;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -53,7 +55,7 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.signup);
+        setContentView(R.layout._signup);
         SharedPreferences sp =  getSharedPreferences("ForEmail", MODE_PRIVATE);
         SharedPreferences sp2 =  getSharedPreferences("ForPassword", MODE_PRIVATE);
         ///
@@ -80,7 +82,11 @@ public class SignUpActivity extends AppCompatActivity {
         View.OnClickListener oclBtnSignUp= new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                String name = editName.getText().toString().trim();
+                String email = Email.getText().toString().trim();
+                String pas = Password.getText().toString().trim();
 
+                if (!TextUtils.isEmpty(email)&!TextUtils.isEmpty(pas)&!TextUtils.isEmpty(name)){
                 mAuth.createUserWithEmailAndPassword(Email.getText().toString(), Password.getText().toString())
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
@@ -98,16 +104,21 @@ public class SignUpActivity extends AppCompatActivity {
                                     Map<String, Object> userMap = new HashMap<>();
                                     userMap.put("nick", editName.getText().toString());
                                     userMap.put("email", Email.getText().toString());
-                                    userMap.put("status", "active");
+                                    userMap.put("status", true);
+                                    userMap.put("donate", false);
+                                    userMap.put("otzovik", false);
 
                                     Map<String, Object> progressMapWim = new HashMap<>();
-                                    progressMapWim.put("days","0");
+                                    progressMapWim.put("days", "0");
+                                    progressMapWim.put("completed", false);
 
                                     Map<String, Object> progressMapKhatkha = new HashMap<>();
-                                    progressMapKhatkha.put("days","0");
+                                    progressMapKhatkha.put("days", "0");
+                                    progressMapKhatkha.put("completed", false);
 
                                     Map<String, Object> progressMapDetka = new HashMap<>();
-                                    progressMapDetka.put("days","0");
+                                    progressMapDetka.put("days", "0");
+                                    progressMapDetka.put("completed", false);
                                     // Add user data to Firestore Database
                                     db.collection("users").document(user.getUid()).set(userMap)
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -169,13 +180,20 @@ public class SignUpActivity extends AppCompatActivity {
                                     // If sign in fails, display a message to the user.
 
                                     Toast toast = Toast.makeText(getApplicationContext(),
-                                            "Authentication failed.", Toast.LENGTH_SHORT);
+                                            "Регистрация не удалась.", Toast.LENGTH_SHORT);
                                     toast.show();
                                 }
                             }
                         });
 
-
+            }   else if(TextUtils.isEmpty(name)){editName.setError("Поле Имени не может быть пустым");}
+                else if (TextUtils.isEmpty(email)){ Email.setError("Поле Email не может быть пустым");}
+                else if (TextUtils.isEmpty(pas)){Password.setError("Поле Пароля не может быть пустым");}
+                else {
+                    editName.setError("Поле Имени не может быть пустым");
+                    Email.setError("Поле Email не может быть пустым");
+                    Password.setError("Поле Пароля не может быть пустым");
+                }
             };
 
         };
@@ -190,7 +208,10 @@ public class SignUpActivity extends AppCompatActivity {
                 .setPositiveButton("Да", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        finish();
+                        Intent intent = new Intent(SignUpActivity.this, CloseActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        SignUpActivity.this.finish();
                     }
                 })
                 .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {

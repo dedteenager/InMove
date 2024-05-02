@@ -2,21 +2,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <item android:id="@+id/navigation_home"
+    <item
+        android:id="@+id/navigation_home"
         android:icon="@drawable/home"
-        android:title="Home" />
+        android:title="Главная" />
 
-    <item android:id="@+id/navigation_Meal"
-        android:icon="@drawable/meal"
-        android:title="Meal" />
-
-    <item android:id="@+id/navigation_Workout"
+    <item
+        android:id="@+id/navigation_Meal"
         android:icon="@drawable/workout"
-        android:title="Workout" />
+        android:title="Прогресс" />
 
-    <item android:id="@+id/navigation_More"
+    <item
+        android:id="@+id/navigation_Workout"
+        android:icon="@drawable/baseline_book_24"
+        android:title="Знания" />
+
+    <item
+        android:id="@+id/navigation_More"
         android:icon="@drawable/more"
-        android:title="More" />
+        android:title="Ещё" />
 
 
 

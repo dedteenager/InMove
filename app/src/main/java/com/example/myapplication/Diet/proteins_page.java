@@ -47,9 +47,9 @@ public class proteins_page extends AppCompatActivity {
         meal.add(new meal("He Died with...","Categorie Book","Description book",R.drawable.hediedwith));
 
         RecyclerView myrv = (RecyclerView) findViewById(R.id.recyclerview_id);
-        RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(this,meal);
+
         myrv.setLayoutManager(new GridLayoutManager(this,3));
-        myrv.setAdapter(myAdapter);
+
 
 
     }

@@ -17,10 +17,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.example.myapplication.DaysActivity.KhatkhaActivity;
@@ -45,7 +47,8 @@ public class Khatkha_fragment extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private OnFragmentInteractionListener mListener;
+    //private OnFragmentInteractionListener mListener;
+    private OnFragmentInteractionListener listener;
     private List<String> dataList = new ArrayList<>();
     @SuppressLint("MissingInflatedId")
     @Override
@@ -60,12 +63,14 @@ public class Khatkha_fragment extends Fragment {
         DocumentReference docRef = db.collection("users").document(userId);
         View view = inflater.inflate(R.layout._khatkha_home_fragment, container, false);
         context = view.getContext();
-       tbHello = view.findViewById(R.id.tbHello);
         khatkhaSwitch= view.findViewById(R.id.imageView3);
 
-        for (int i = 1; i <= 30; i++) {
-            dataList.add("День " + i);
+        if(dataList.isEmpty()) {
+            for (int i = 1; i <= 21; i++) {
+                dataList.add("День " + i);
+            }
         }
+
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
 
@@ -81,26 +86,30 @@ public class Khatkha_fragment extends Fragment {
         khatkhaSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mListener.onButtonClickedKhatkha();
-            }
-        });
-
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                       tbHello.setText("Здравствуй, "+document.getString("nick"));
-
-                    } else {
-                        Log.d(TAG, "No such document");
+                PopupMenu popupMenu = new PopupMenu(getActivity(), khatkhaSwitch);
+                popupMenu.getMenuInflater().inflate(R.menu.menu_main, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.action_item1:
+                                listener.onButtonClickedKhatkha();
+                                return true;
+                            case R.id.action_item2:
+                                listener.onButtonClickedWim();
+                                return true;
+                            case R.id.action_item3:
+                                listener.onButtonClickedNone();
+                                return true;
+                            default:
+                                return false;
+                        }
                     }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
+                });
+                popupMenu.show();
             }
         });
+
         return view;
 
     }
@@ -108,17 +117,30 @@ public class Khatkha_fragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+            listener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString() + " must implement OnFragmentInteractionListener");
         }
     }
-
     public interface OnFragmentInteractionListener {
         void onButtonClickedKhatkha();
-
         void onButtonClickedWim();
+        void onButtonClickedNone();
     }
+    //@Override
+    //public void onAttach(Context context) {
+    //    super.onAttach(context);
+    //    if (context instanceof OnFragmentInteractionListener) {
+    //        mListener = (OnFragmentInteractionListener) context;
+    //    } else {
+    //        throw new RuntimeException(context.toString() + " must implement OnFragmentInteractionListener");
+    //    }
+    //}
+//
+    //public interface OnFragmentInteractionListener {
+    //    void onButtonClickedKhatkha();
+//
+    //}
 
     public class ItemOffsetDecoration extends RecyclerView.ItemDecoration {
         private final int mItemOffset;
@@ -182,6 +204,7 @@ public class Khatkha_fragment extends Fragment {
                                     public void onClick(View view) {
                                         Intent intent = new Intent(getActivity(), KhatkhaActivity.class);
                                         startActivity(intent);
+
                                     }
                                 });
                             } else {

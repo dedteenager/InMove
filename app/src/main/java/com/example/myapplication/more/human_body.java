@@ -21,6 +21,7 @@ public class human_body extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+
             }
         });
 

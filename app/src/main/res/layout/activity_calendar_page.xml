@@ -16,7 +16,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#2E8B57"
+        android:background="@color/green"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
@@ -27,7 +27,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_baseline_arrow_back_24"
-            android:text="Calendar"
+            android:fontFamily="@font/oswald"
+            android:text="Календарь"
             android:textColor="#FFFFFF"
             android:textSize="20dp"
             android:textStyle="bold" />

@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_item1"
+        android:title="Метод Вима Хофа" />
+    <item
+        android:id="@+id/action_item2"
+        android:title="None" />
+    <item
+        android:id="@+id/action_item3"
+        android:title="Хатха-Йога" />
+</menu>

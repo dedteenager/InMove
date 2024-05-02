@@ -1,27 +1,62 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:background="@color/gray"
+    android:elevation="15dp">
 
-    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-        android:id="@+id/youtube_player_view"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="570dp" />
+        android:layout_height="match_parent" >
 
-    <Button
-        android:id="@+id/btnNext"
-        android:layout_width="100dp"
-        android:layout_height="63dp"
-        android:layout_below="@+id/youtube_player_view"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="55dp"
-        android:layout_marginEnd="161dp"
-        android:layout_marginBottom="42dp"
-        android:text="Далее" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                android:id="@+id/youtube_player_view"
+                android:layout_width="match_parent"
+                android:layout_height="650dp"
+                app:enableAutomaticInitialization="false"
+                app:layout_constraintHeight_percent="0.5">
+
+            </com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="40dp">
+
+                <Button
+                    android:id="@+id/btnCancel"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:background="@color/white"
+                    android:elevation="15dp"
+                    android:fontFamily="@font/oswald"
+                    android:text="Отмена"
+                    android:textColor="@color/green" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/btnNext"
+                    android:layout_width="133dp"
+                    android:layout_height="50dp"
+                    android:background="@color/green"
+                    android:elevation="15dp"
+                    android:fontFamily="@font/oswald"
+                    android:shadowColor="@color/gray"
+                    android:text="Далее"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
 
 </RelativeLayout>

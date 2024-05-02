@@ -10,6 +10,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class feedback_page extends AppCompatActivity {
 TextView back;
@@ -22,11 +29,18 @@ TextView back;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback_page);
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userId = user.getUid();
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference docRef = db.collection("users").document(userId);
+
         back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
+
             }
         });
 
@@ -37,7 +51,11 @@ TextView back;
         buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Map<String, Object> otzovikActivate = new HashMap<>();
+                otzovikActivate.put("otzovik",true);
+                docRef.update(otzovikActivate);
                 sendMail();
+
             }
         });
     }
@@ -51,6 +69,6 @@ TextView back;
         intent.putExtra(Intent.EXTRA_SUBJECT, subject);
         intent.putExtra(Intent.EXTRA_TEXT, message);
         intent.setType("message/rfc822");
-        startActivity(Intent.createChooser(intent, "Choose an email client"));
+        startActivity(Intent.createChooser(intent, "Выберите приложение"));
     }
 }

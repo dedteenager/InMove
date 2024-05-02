@@ -35,6 +35,7 @@ public class Reminders_page extends AppCompatActivity implements TimePickerDialo
             @Override
             public void onClick(View view) {
                 finish();
+
             }
         });
 
@@ -46,6 +47,7 @@ public class Reminders_page extends AppCompatActivity implements TimePickerDialo
             public void onClick(View v) {
                 DialogFragment timePicker = new TimePickerFragment();
                 timePicker.show(getSupportFragmentManager(), "time picker");
+
             }
         });
         Button buttonCancelAlarm = findViewById(R.id.button_cancel);
@@ -53,6 +55,7 @@ public class Reminders_page extends AppCompatActivity implements TimePickerDialo
             @Override
             public void onClick(View v) {
                 cancelAlarm();
+
             }
         });
     }

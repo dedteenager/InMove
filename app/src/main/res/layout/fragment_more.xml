@@ -1,66 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f2f2f5"
     android:orientation="vertical"
-    android:background="@drawable/background"
-    tools:context=".home.moreFragment">
+    tools:context=".home.More_fragment">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/header_cover_image"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/moreimg" />
-
-        <ImageButton
-            android:id="@+id/user_profile_photo"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_below="@+id/header_cover_image"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="-60dp"
-            android:background="@drawable/yoga2"
-            android:elevation="5dp"
-            android:padding="20dp"
-            android:scaleType="centerCrop"/>
-
         <RelativeLayout
             android:id="@+id/profile_layout"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_below="@+id/header_cover_image"
+            android:layout_height="wrap_content"
 
-            android:elevation="4dp"
-            android:paddingBottom="24dp">
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp">
 
 
             <TextView
-                android:id="@+id/user_profile_name"
-                android:layout_width="wrap_content"
+                android:id="@+id/userName"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp"
-                android:text="Yoga For Weight Loss"
-                android:textColor="#000"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:fontFamily="@font/oswald"
+                android:padding="10dp"
+                android:text="Загрузка..."
+                android:textAlignment="center"
+                android:textColor="#000000"
                 android:textSize="24sp"
-                android:textStyle="bold" />
+                app:autoSizeTextType="uniform" />
 
-            <TextView
-                android:id="@+id/user_profile_short_bio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/user_profile_name"
-                android:layout_centerHorizontal="true"
-                android:text="Android free tutorials and example"
-                android:textColor="#000"
-                android:textSize="14sp" />
         </RelativeLayout>
 
 
@@ -69,119 +49,131 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/profile_layout"
             android:layout_marginTop="5dp"
-            android:orientation="vertical">
-
-
+            android:background="#f2f2f5"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
 
 
             <TextView
                 android:id="@+id/setting"
-                android:drawableRight="@drawable/ic_baseline_settings_24"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="65dp"
                 android:layout_margin="5dp"
-                android:layout_marginBottom="3dp"
                 android:layout_marginTop="3dp"
-                android:background="#fff"
+                android:layout_marginBottom="3dp"
+                android:background="@drawable/recycler_view"
                 android:clickable="true"
+                android:drawableRight="@drawable/ic_baseline_settings_24"
                 android:elevation="4dp"
+                android:fontFamily="@font/lora"
                 android:padding="20dp"
-                android:text="Setting" />
-
-
-
-
+                android:text="Setting"
+                android:visibility="gone" />
 
 
             <TextView
                 android:id="@+id/Reminders"
+                android:layout_width="fill_parent"
+
+                android:layout_height="65dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/recycler_view"
+                android:clickable="true"
                 android:drawableRight="@drawable/ic_baseline_notifications_active_24"
 
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:background="#fff"
-                android:clickable="true"
-
                 android:elevation="4dp"
+                android:fontFamily="@font/lora"
                 android:padding="20dp"
-                android:text="Reminders" />
+                android:text="Напоминание" />
 
 
             <TextView
                 android:id="@+id/body_pro"
+                android:layout_width="fill_parent"
+                android:layout_height="65dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/recycler_view"
+                android:clickable="true"
                 android:drawableRight="@drawable/ic_baseline_bar_chart_24"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="#fff"
-                android:clickable="true"
                 android:elevation="4dp"
+                android:fontFamily="@font/lora"
                 android:padding="20dp"
-                android:text="Human Body" />
-
-            <TextView
-                android:id="@+id/chart"
-                android:drawableRight="@drawable/ic_baseline_format_align_left_24"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_marginBottom="3dp"
-                android:layout_marginTop="3dp"
-                android:background="#fff"
-                android:clickable="true"
-                android:elevation="4dp"
-                android:padding="20dp"
-                android:text="chart" />
+                android:text="Human Body"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/Calculate"
-                android:drawableRight="@drawable/ic_baseline_storage_24"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="65dp"
                 android:layout_margin="5dp"
-                android:background="#fff"
+                android:background="@drawable/recycler_view"
                 android:clickable="true"
+                android:drawableRight="@drawable/ic_baseline_storage_24"
                 android:elevation="4dp"
+                android:fontFamily="@font/lora"
                 android:padding="20dp"
-                android:text="Calculate BMI" />
+                android:text="Вычислить ИМТ" />
 
             <TextView
                 android:id="@+id/Calendar"
-                android:drawableRight="@drawable/ic_baseline_calendar_today_24"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="65dp"
                 android:layout_margin="5dp"
-                android:background="#fff"
+                android:background="@drawable/recycler_view"
                 android:clickable="true"
+                android:drawableRight="@drawable/ic_baseline_calendar_today_24"
                 android:elevation="4dp"
+                android:fontFamily="@font/lora"
                 android:padding="20dp"
-                android:text="Calendar" />
+                android:text="Календарь" />
 
 
             <TextView
                 android:id="@+id/feedback"
-                android:drawableRight="@drawable/ic_baseline_feedback_24"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="65dp"
                 android:layout_margin="5dp"
-                android:background="#fff"
+                android:background="@drawable/recycler_view"
                 android:clickable="true"
+                android:drawableRight="@drawable/ic_baseline_feedback_24"
                 android:elevation="4dp"
+                android:fontFamily="@font/lora"
                 android:padding="20dp"
-                android:text="Feedback" />
+                android:text="Отзыв" />
 
             <TextView
-                android:id="@+id/rating"
-                android:drawableRight="@drawable/ic_baseline_rate_review_24"
+                android:id="@+id/donate"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="65dp"
                 android:layout_margin="5dp"
-                android:background="#fff"
+                android:background="@drawable/recycler_view"
                 android:clickable="true"
+                android:drawableRight="@drawable/baseline_attach_money_24"
                 android:elevation="4dp"
+                android:fontFamily="@font/lora"
                 android:padding="20dp"
-                android:text="Rating" />
+                android:text="Донат" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <Button
+                    android:id="@+id/btnLogout"
+                    android:layout_width="149dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_bg"
+                    android:backgroundTint="#DA1717"
+                    android:fontFamily="@font/oswald"
+                    android:gravity="center"
+                    android:text="Выйти"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#6C4343" />
+            </LinearLayout>
 
 
         </LinearLayout>
