@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +33,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,13 +41,14 @@ import java.util.Map;
 public class KhatkhaActivity extends AppCompatActivity {
     private Button btnNext;
     private Button btnCancel;
+    private ImageView banner;
     public int currentDayPub;
-    public  DocumentReference docRefPub;
+    public  DocumentReference docRefPub,AD_ref_pub;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout._everyday_activity);
-
+banner=findViewById(R.id.imageView8);
         btnCancel=findViewById(R.id.btnCancel);
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +69,21 @@ public class KhatkhaActivity extends AppCompatActivity {
         String userId = user.getUid();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference docRef = db.collection("users").document(userId).collection("Progress").document("Khatkha");
+        DocumentReference AD_ref = db.collection("ad").document("1");
+        AD_ref_pub=AD_ref;
         docRefPub =docRef;
+        AD_ref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+                    String imageUrl = documentSnapshot.getString("image");
+                    // Загрузка изображения с помощью Picasso
+                    Picasso.get().load(imageUrl).into(banner);
+                } else {
+                    Log.d("TAG", "Документ не существует");
+                }
+            }
+        });
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -76,7 +93,7 @@ public class KhatkhaActivity extends AppCompatActivity {
                     currentDayPub=currentDay;
                     String[] daysVideos=new String[21];
 
-                    daysVideos[0]="sQRfp2Xp6U0";
+                    daysVideos[0]="cSm6EZxE5Ic";
                     daysVideos[1]="8kSjeuBVqjs";
                     daysVideos[2]="--pnreEPBLE";
                     daysVideos[3]="VjQvtE_el7w";

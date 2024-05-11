@@ -25,6 +25,7 @@ import com.example.myapplication.more.Reminders_page;
 import com.example.myapplication.more.feedback_page;
 import com.example.myapplication.more.human_body;
 import com.example.myapplication.more.setting_page;
+import com.example.myapplication.stopwatch.stop_watch_page;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,7 +41,7 @@ import java.util.Map;
 public class More_fragment extends Fragment {
   Button btnLogout;
     TextView userName;
-TextView Reminders,Calendar,Calculate,body_pro,feedback,setting,donate;
+TextView Reminders,Calendar,Calculate,body_pro,feedback,setting,donate,watch;
     Context context;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -83,7 +84,6 @@ TextView Reminders,Calendar,Calculate,body_pro,feedback,setting,donate;
 
             }
         });
-
         setting = view.findViewById(R.id.setting);
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,11 +123,11 @@ TextView Reminders,Calendar,Calculate,body_pro,feedback,setting,donate;
             }
         });
 
-        body_pro = view.findViewById(R.id.body_pro);
-        body_pro.setOnClickListener(new View.OnClickListener() {
+        watch = view.findViewById(R.id.watch);
+        watch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context.getApplicationContext(), human_body.class);
+                Intent intent = new Intent(context.getApplicationContext(), stop_watch_page.class);
                 startActivity(intent);
 
             }

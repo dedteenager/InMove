@@ -54,7 +54,14 @@
                     android:shadowColor="@color/gray"
                     android:text="Далее"
                     android:textColor="#FFFFFF" />
+
             </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/c" />
         </LinearLayout>
     </ScrollView>
 
