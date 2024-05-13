@@ -94,7 +94,7 @@ public class Home_page extends AppCompatActivity implements BottomNavigationView
         new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle("Проблема с интернет-соединением")
-                .setMessage("Проеаерьте интернет-соединение. Оно должно быть включено ")
+                .setMessage("Проверьте интернет-соединение. Оно должно быть включено ")
                 .setPositiveButton("Закрыть", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

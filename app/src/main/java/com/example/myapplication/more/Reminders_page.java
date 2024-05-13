@@ -69,7 +69,7 @@ public class Reminders_page extends AppCompatActivity implements TimePickerDialo
         startAlarm(c);
     }
     private void updateTimeText(Calendar c) {
-        String timeText = "Alarm set for: ";
+        String timeText = "Напоминание установлено на: ";
         timeText += DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime());
         mTextView.setText(timeText);
     }
@@ -87,6 +87,6 @@ public class Reminders_page extends AppCompatActivity implements TimePickerDialo
         Intent intent = new Intent(this, AlertReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
         alarmManager.cancel(pendingIntent);
-        mTextView.setText("Alarm canceled");
+        mTextView.setText("Напоминание отменено");
     }
 }

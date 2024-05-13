@@ -19,7 +19,7 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/btn_home"
         android:fontFamily="@font/oswald"
-        android:text="@string/Начать"
+        android:text="Начать"
         android:textColor="#fff"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/tab_indicator"
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:background="@null"
 
-        android:text="Skip"
+        android:text="Пропустить"
         android:textColor="#FFFFFF"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"

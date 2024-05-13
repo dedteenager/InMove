@@ -61,7 +61,8 @@
                 android:id="@+id/imageView8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/c" />
+                android:clickable="true"
+                android:src="@drawable/stop" />
         </LinearLayout>
     </ScrollView>
 

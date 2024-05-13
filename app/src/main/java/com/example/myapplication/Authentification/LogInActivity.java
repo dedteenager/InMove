@@ -2,8 +2,11 @@ package com.example.myapplication.Authentification;
 
 import static android.content.ContentValues.TAG;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -60,6 +63,25 @@ public class LogInActivity extends AppCompatActivity {
         Password=findViewById(R.id.editPasswordIn);
         btnToForgotPassword=findViewById(R.id.btnToForgotPasswordr);
 
+        if (!isconnected()) {
+            new AlertDialog.Builder(this)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle("Проблема с интернет-соединением")
+                    .setMessage("Проверьте интернет-соединение. Оно должно быть включено ")
+                    .setPositiveButton("Закрыть", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(LogInActivity.this, CloseActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                            LogInActivity.this.finish();
+                        }
+                    })
+
+                    .show();
+        } else {
+
+        }
         View.OnClickListener oclBtnGoToReg = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -152,5 +174,10 @@ public class LogInActivity extends AppCompatActivity {
                 })
                 .show();
 
+    }
+    private boolean isconnected() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        return networkInfo != null && networkInfo.isConnected();
     }
 }

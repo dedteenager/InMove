@@ -54,9 +54,9 @@ public class slider extends AppCompatActivity {
 
         //fill data description
         final List<ScreenItem> mList = new ArrayList<>();
-        mList.add(new ScreenItem("BINGUNG CARI\nMENTOR BELAJAR?", "Apa ya enaknya? saya juga bingung mau\nrekomendasi apa. Tapi tunggu, kan ada\nsosial media...", R.drawable.a));
-        mList.add(new ScreenItem("TAPI MENTORNYA\nJAUH & SIBUK...", "Wah, ribet juga ya kalo gitu. Kira-kira\nenaknya gimana ya? hmm...", R.drawable.b));
-        mList.add(new ScreenItem("AKHIRNYA KETEMU\nJUGA DEH...", "Kok cepet? owh iya kan pake aplikasi\n\"Meet The Mentor\" katanya ya...?\ncoba dulu deh….", R.drawable.c));
+        mList.add(new ScreenItem("Добро пожаловать в мир\n здоровья и гармонии", "Данное приложение поможет вам на пути к здоровому образу жизни.\n Здесь вы найдете огромное количество полезных статей и видео уроков \nпо йоге, табате и другим здоровым практикам.", R.drawable.a));
+        mList.add(new ScreenItem("Личный тренер \n прямо у вас в кармане", "Здесь вы сможете следить за своим прогрессом.\n Все это поможет вам стать здоровее и счастливее!", R.drawable.b));
+        mList.add(new ScreenItem("Полезные инструменты для заботы о себе", "В приложении доступны различные вспомогательные утилиты,\n которые помогут вам заботиться о своем здоровье и благополучии.", R.drawable.c));
 
         //Setup ViewPager
         screenPager = findViewById(R.id.screen_viewpager);

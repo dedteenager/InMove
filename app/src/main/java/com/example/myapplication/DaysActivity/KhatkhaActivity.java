@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 
 import android.util.Log;
@@ -41,14 +42,17 @@ import java.util.Map;
 public class KhatkhaActivity extends AppCompatActivity {
     private Button btnNext;
     private Button btnCancel;
+    public String link;
     private ImageView banner;
+    public  DocumentReference AD_ref_pub;
     public int currentDayPub;
-    public  DocumentReference docRefPub,AD_ref_pub;
+
+    public  DocumentReference docRefPub;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout._everyday_activity);
-banner=findViewById(R.id.imageView8);
+        banner=findViewById(R.id.imageView8);
         btnCancel=findViewById(R.id.btnCancel);
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,19 +73,29 @@ banner=findViewById(R.id.imageView8);
         String userId = user.getUid();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference docRef = db.collection("users").document(userId).collection("Progress").document("Khatkha");
+        docRefPub =docRef;
+
         DocumentReference AD_ref = db.collection("ad").document("1");
         AD_ref_pub=AD_ref;
-        docRefPub =docRef;
         AD_ref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot.exists()) {
+                    link=documentSnapshot.getString("link");
                     String imageUrl = documentSnapshot.getString("image");
+
                     // Загрузка изображения с помощью Picasso
                     Picasso.get().load(imageUrl).into(banner);
                 } else {
                     Log.d("TAG", "Документ не существует");
                 }
+            }
+        });
+
+        banner.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+                startActivity(intent);
             }
         });
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -204,7 +218,7 @@ banner=findViewById(R.id.imageView8);
             builder.setMessage("Поздравляю вы закончили курс!");
         }
         else{
-            builder.setMessage("Тренировка закончилась");
+            builder.setMessage("Занятие закончилось");
         }
         builder.setPositiveButton("Завершить", new DialogInterface.OnClickListener() {
             @Override

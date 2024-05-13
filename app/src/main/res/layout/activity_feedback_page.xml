@@ -36,12 +36,18 @@
 
 
     <TextView
+        android:id="@+id/textView9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Поддержка: Xetyq@yandex.ru" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/oswald"
-        android:text="To:"
+        android:text="Кому:"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <EditText
@@ -52,7 +58,8 @@
         android:layout_marginLeft="15dp"
         android:background="@drawable/edit_bg"
         android:fontFamily="@font/lora"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:paddingStart="10dp" />
 
     <TextView
 
@@ -60,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:fontFamily="@font/oswald"
-        android:text="Subject:"
+        android:text="Тема:"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <EditText
@@ -71,14 +78,15 @@
         android:layout_marginLeft="15dp"
         android:background="@drawable/edit_bg"
         android:fontFamily="@font/lora"
-        android:inputType="textEmailSubject" />
+        android:inputType="textEmailSubject"
+        android:paddingStart="10dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:fontFamily="@font/oswald"
-        android:text="Message:"
+        android:text="Сообщение:"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <EditText
@@ -89,7 +97,9 @@
         android:background="@drawable/edit_bg"
         android:fontFamily="@font/lora"
         android:gravity="start|top"
-        android:lines="10" />
+        android:lines="10"
+        android:paddingStart="10dp"
+        android:paddingTop="10dp" />
 
     <Button
         android:id="@+id/button_send"

@@ -2,8 +2,11 @@ package com.example.myapplication.Authentification;
 
 import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -78,6 +81,26 @@ public class SignUpActivity extends AppCompatActivity {
         editName = findViewById(R.id.editName);
         Email = findViewById(R.id.editEmail);
         Password = findViewById(R.id.editPassword);
+
+        if (!isconnected()) {
+            new AlertDialog.Builder(this)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle("Проблема с интернет-соединением")
+                    .setMessage("Проверьте интернет-соединение. Оно должно быть включено. ")
+                    .setPositiveButton("Закрыть", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(SignUpActivity.this, CloseActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                            SignUpActivity.this.finish();
+                        }
+                    })
+
+                    .show();
+        } else {
+
+        }
       //  RePassword = findViewById(R.id.repeatPassword);
         View.OnClickListener oclBtnSignUp= new View.OnClickListener(){
             @Override
@@ -222,6 +245,11 @@ public class SignUpActivity extends AppCompatActivity {
                 })
                 .show();
 
+    }
+    private boolean isconnected() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        return networkInfo != null && networkInfo.isConnected();
     }
 
 }

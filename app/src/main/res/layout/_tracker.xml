@@ -45,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     android:fontFamily="@font/lora"
-                    android:text="Метод Вима Хофа"
+                    android:text="Управление стрессом"
                     android:textAlignment="textStart"
                     android:textSize="24sp" />
 
@@ -79,7 +79,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     android:fontFamily="@font/lora"
-                    android:text="Детка Порфирия Корнеевича"
+                    android:text="Табата"
                     android:textAlignment="textStart"
                     android:textSize="24sp" />
 
