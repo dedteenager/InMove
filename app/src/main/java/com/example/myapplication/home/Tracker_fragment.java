@@ -312,10 +312,6 @@ public class Tracker_fragment extends Fragment {
                         currentDay = Integer.parseInt(document.getString("days"));
                         for (int i = 1; i <= totalDays; i++) {
                             View circle = new View(getContext());
-                           // int size = 27;
-                           //LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(size, size);
-                           //params.setMargins(5, 0, 5, 0);
-                           //circle.setLayoutParams(params);
                             int size = (int) (TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 14, getResources().getDisplayMetrics()));
                             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(size, size);
                             params.setMargins((int) (TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics())), 0, (int) (TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2 , getResources().getDisplayMetrics())), 0);

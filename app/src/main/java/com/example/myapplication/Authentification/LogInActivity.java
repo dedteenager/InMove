@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -23,6 +24,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
+import com.example.myapplication.Soon_Activity;
 import com.example.myapplication.home.CloseActivity;
 import com.example.myapplication.home.Home_page;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -32,13 +34,16 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class LogInActivity extends AppCompatActivity {
     private TextView SignUp;
     private EditText Email;
     private EditText Password;
     private FirebaseAuth mAuth;
     private Button LoginBtn;
-    private ImageView btnGoogleLogin;
+    private ImageView  vkRegBtn, btnGoogleLogin;
     private TextView btnToForgotPassword;
 
     @Override
@@ -62,7 +67,24 @@ public class LogInActivity extends AppCompatActivity {
         Email=findViewById(R.id.editEmailIn);
         Password=findViewById(R.id.editPasswordIn);
         btnToForgotPassword=findViewById(R.id.btnToForgotPasswordr);
+        vkRegBtn=findViewById(R.id.vkRegBtn);
+        View.OnClickListener Soon = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LogInActivity.this, Soon_Activity.class);
+                startActivity(intent);
 
+            }
+        };
+        btnGoogleLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = "https://rtvi.com/news/rossijskie-servisy-perestanut-avtorizovyvat-polzovatelej-cherez-google-i-apple";
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+            }
+        });
+        vkRegBtn.setOnClickListener(Soon);
         if (!isconnected()) {
             new AlertDialog.Builder(this)
                     .setIcon(android.R.drawable.ic_dialog_alert)

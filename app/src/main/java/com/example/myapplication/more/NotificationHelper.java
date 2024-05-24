@@ -36,8 +36,8 @@ public class NotificationHelper extends ContextWrapper {
     }
     public NotificationCompat.Builder getChannelNotification() {
         return new NotificationCompat.Builder(getApplicationContext(), channelID)
-                .setContentTitle("Alarm!")
-                .setContentText("your time start")
-                .setSmallIcon(R.drawable.ic_launcher_foreground);
+                .setContentTitle("Привет!")
+                .setContentText("Заходи в InMove!")
+                .setSmallIcon(R.drawable.icon);
     }
 }

@@ -7,12 +7,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.content.SharedPreferences;
@@ -21,6 +23,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
+import com.example.myapplication.Soon_Activity;
 import com.example.myapplication.home.CloseActivity;
 import com.example.myapplication.home.Home_page;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -43,6 +46,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText Password;
     private EditText editName;
     private EditText RePassword;
+    private ImageView vkRegBtn, btnGoogleLogin;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
     public void onStart() {
@@ -61,6 +65,23 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout._signup);
         SharedPreferences sp =  getSharedPreferences("ForEmail", MODE_PRIVATE);
         SharedPreferences sp2 =  getSharedPreferences("ForPassword", MODE_PRIVATE);
+        View.OnClickListener Soon = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SignUpActivity.this, Soon_Activity.class);
+                startActivity(intent);
+
+            }
+        };
+        btnGoogleLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = "https://rtvi.com/news/rossijskie-servisy-perestanut-avtorizovyvat-polzovatelej-cherez-google-i-apple";
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+            }
+        });
+        vkRegBtn.setOnClickListener(Soon);
         ///
         mAuth=FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();

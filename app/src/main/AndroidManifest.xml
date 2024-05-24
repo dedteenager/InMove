@@ -48,6 +48,8 @@
             android:theme="@style/greenbar"/>
         <activity android:name=".Authentification.LogInActivity"
             android:screenOrientation="locked"/>
+        <activity android:name=".Soon_Activity"
+            android:screenOrientation="locked"/>
         <activity android:name=".Authentification.SignUpActivity"
             android:screenOrientation="locked"/>
         <activity android:name=".slider.slider"
