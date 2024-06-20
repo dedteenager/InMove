@@ -74,11 +74,11 @@
         <activity android:name=".Authentification.ForgotPasswordActivity"
             android:screenOrientation="locked" />
         <activity android:name=".DaysActivity.KhatkhaActivity"
-            android:screenOrientation="locked"/>
+            />
         <activity android:name=".DaysActivity.WimActivity"
-            android:screenOrientation="locked"/>
+            />
         <activity android:name=".DaysActivity.NoneActivity"
-            android:screenOrientation="locked"/>
+            />
         <activity android:name=".DaysActivity.KnowledgePageActivity"
             android:screenOrientation="locked"/>
         <activity android:name=".mainpage.MainActivity"

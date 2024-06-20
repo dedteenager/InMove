@@ -27,6 +27,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.FullscreenListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
@@ -38,6 +39,9 @@ import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
 
 public class KhatkhaActivity extends AppCompatActivity {
     private Button btnNext;
@@ -107,27 +111,27 @@ public class KhatkhaActivity extends AppCompatActivity {
                     currentDayPub=currentDay;
                     String[] daysVideos=new String[21];
 
-                    daysVideos[0]="cSm6EZxE5Ic";
-                    daysVideos[1]="8kSjeuBVqjs";
-                    daysVideos[2]="--pnreEPBLE";
-                    daysVideos[3]="VjQvtE_el7w";
-                    daysVideos[4]="TJ_7-n02nEg";
-                    daysVideos[5]="JesWs7SALfQ";
-                    daysVideos[6]="vBCNlxFTkJk";
-                    daysVideos[7]="c0-hvjV2A5Y";
-                    daysVideos[8]="hb0XLX0b4Y4";
-                    daysVideos[9]="H2I6V0NlaHg";
-                    daysVideos[10]="fx7tkHLD3RY";
-                    daysVideos[11]="PMak_mhQh5k";
-                    daysVideos[12]="8kSjeuBVqjs";
-                    daysVideos[13]="sQRfp2Xp6U0";
-                    daysVideos[14]="--pnreEPBLE";
-                    daysVideos[15]="VjQvtE_el7w";
-                    daysVideos[16]="TJ_7-n02nEg";
-                    daysVideos[17]="JesWs7SALfQ";
-                    daysVideos[18]="vBCNlxFTkJk";
-                    daysVideos[19]="c0-hvjV2A5Y";
-                    daysVideos[20]="hb0XLX0b4Y4";
+                    daysVideos[0]="p_EQi_ehClw";
+                    daysVideos[1]="w7jGkiPF4dM";
+                    daysVideos[2]="jILXKKT7Ag0";
+                    daysVideos[3]="0d4rZa-Wmrw";
+                    daysVideos[4]="ny88-pbOft0";
+                    daysVideos[5]="UHdlIFGq90I";
+                    daysVideos[6]="PsApxb_-OFQ";
+                    daysVideos[7]="7apXd5rDZU8";
+                    daysVideos[8]="OfExsbU-zyg";
+                    daysVideos[9]="3eRbE7f1W6E";
+                    daysVideos[10]="FpFaVXApfhk";
+                    daysVideos[11]="vE5c4J5JRRU";
+                    daysVideos[12]="4DSxS84AGR0";
+                    daysVideos[13]="azb0hUGuB0A";
+                    daysVideos[14]="0d4rZa-Wmrw";
+                    daysVideos[15]="FpFaVXApfhk";
+                    daysVideos[16]="7apXd5rDZU8";
+                    daysVideos[17]="ny88-pbOft0";
+                    daysVideos[18]="w7jGkiPF4dM";
+                    daysVideos[19]="UHdlIFGq90I";
+                    daysVideos[20]="3eRbE7f1W6E";
 
                     YouTubePlayerListener listener = new YouTubePlayerListener() {
                         @Override
@@ -180,6 +184,7 @@ public class KhatkhaActivity extends AppCompatActivity {
                         public void onApiChange(@NonNull YouTubePlayer youTubePlayer) {
 
                         }
+
                     };
                     IFramePlayerOptions iframePlayerOptions = new IFramePlayerOptions.Builder()
                             .controls(1)

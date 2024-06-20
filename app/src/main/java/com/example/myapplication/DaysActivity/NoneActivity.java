@@ -101,27 +101,27 @@ public class NoneActivity extends AppCompatActivity {
                     currentDayPub=currentDay;
                     String[] daysVideos=new String[21];
 
-                    daysVideos[0]="8kSjeuBVqjs";
-                    daysVideos[1]="sQRfp2Xp6U0";
-                    daysVideos[2]="--pnreEPBLE";
-                    daysVideos[3]="VjQvtE_el7w";
-                    daysVideos[4]="TJ_7-n02nEg";
-                    daysVideos[5]="JesWs7SALfQ";
-                    daysVideos[6]="vBCNlxFTkJk";
-                    daysVideos[7]="c0-hvjV2A5Y";
-                    daysVideos[8]="hb0XLX0b4Y4";
-                    daysVideos[9]="H2I6V0NlaHg";
-                    daysVideos[10]="fx7tkHLD3RY";
-                    daysVideos[11]="PMak_mhQh5k";
-                    daysVideos[12]="8kSjeuBVqjs";
-                    daysVideos[13]="sQRfp2Xp6U0";
-                    daysVideos[14]="--pnreEPBLE";
-                    daysVideos[15]="VjQvtE_el7w";
-                    daysVideos[16]="TJ_7-n02nEg";
-                    daysVideos[17]="JesWs7SALfQ";
-                    daysVideos[18]="vBCNlxFTkJk";
-                    daysVideos[19]="c0-hvjV2A5Y";
-                    daysVideos[20]="hb0XLX0b4Y4";
+                    daysVideos[0]="rZdJKF0yCKE";
+                    daysVideos[1]="JnrXZ3034hg";
+                    daysVideos[2]="23WTBzutLJE";
+                    daysVideos[3]="J3tRz0pyfys";
+                    daysVideos[4]="yVUcHEOr450";
+                    daysVideos[5]="x-BvlPDgOps";
+                    daysVideos[6]="UpN2q4FkzaA";
+                    daysVideos[7]="B8quRRZCPAI";
+                    daysVideos[8]="vVzPbZ9Jx_A";
+                    daysVideos[9]="23WTBzutLJE";
+                    daysVideos[10]="KtM693B72_4";
+                    daysVideos[11]="UmyVjaG6i00";
+                    daysVideos[12]="sZf7ladUoD8";
+                    daysVideos[13]="U2kQXG9jH28";
+                    daysVideos[14]="tnPIRMdWOrs";
+                    daysVideos[15]="xLdGMqu3LtI";
+                    daysVideos[16]="G7IFG6-mRAM";
+                    daysVideos[17]="B8quRRZCPAI";
+                    daysVideos[18]="UmyVjaG6i00";
+                    daysVideos[19]="yVUcHEOr450";
+                    daysVideos[20]="sZf7ladUoD8";
 
                     YouTubePlayerListener listener = new YouTubePlayerListener() {
                         @Override
@@ -132,48 +132,49 @@ public class NoneActivity extends AppCompatActivity {
 
                         @Override
                         public void onStateChange(@NonNull YouTubePlayer youTubePlayer, @NonNull PlayerConstants.PlayerState playerState) {
-
+                            Log.d("TAG", "No such document");
                         }
 
                         @Override
                         public void onPlaybackQualityChange(@NonNull YouTubePlayer youTubePlayer, @NonNull PlayerConstants.PlaybackQuality playbackQuality) {
-
+                            Log.d("TAG", "No such document");
                         }
 
                         @Override
                         public void onPlaybackRateChange(@NonNull YouTubePlayer youTubePlayer, @NonNull PlayerConstants.PlaybackRate playbackRate) {
-
+                            Log.d("TAG", "No such document");
                         }
 
                         @Override
                         public void onError(@NonNull YouTubePlayer youTubePlayer, @NonNull PlayerConstants.PlayerError playerError) {
-
+                            Log.d("TAG", "No such document");
                         }
 
                         @Override
                         public void onCurrentSecond(@NonNull YouTubePlayer youTubePlayer, float v) {
-
+                            Log.d("TAG", "No such document");
                         }
 
                         @Override
                         public void onVideoDuration(@NonNull YouTubePlayer youTubePlayer, float v) {
-
+                            Log.d("TAG", "No such document");
                         }
 
                         @Override
                         public void onVideoLoadedFraction(@NonNull YouTubePlayer youTubePlayer, float v) {
-
+                            Log.d("TAG", "No such document");
                         }
 
                         @Override
                         public void onVideoId(@NonNull YouTubePlayer youTubePlayer, @NonNull String s) {
-
+                            Log.d("TAG", "No such document");
                         }
 
                         @Override
                         public void onApiChange(@NonNull YouTubePlayer youTubePlayer) {
-
+                            Log.d("TAG", "No such document");
                         }
+
                     };
                     IFramePlayerOptions iframePlayerOptions = new IFramePlayerOptions.Builder()
                             .controls(1)

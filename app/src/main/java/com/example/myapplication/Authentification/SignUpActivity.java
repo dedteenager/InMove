@@ -63,6 +63,8 @@ public class SignUpActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout._signup);
+        vkRegBtn=findViewById(R.id.vkRegBtn);
+        btnGoogleLogin=findViewById(R.id.btnGoogleLogin);
         SharedPreferences sp =  getSharedPreferences("ForEmail", MODE_PRIVATE);
         SharedPreferences sp2 =  getSharedPreferences("ForPassword", MODE_PRIVATE);
         View.OnClickListener Soon = new View.OnClickListener() {

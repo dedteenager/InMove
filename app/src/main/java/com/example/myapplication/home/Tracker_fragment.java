@@ -58,22 +58,7 @@ public class Tracker_fragment extends Fragment {
         DocumentReference khatkha = db.collection("users").document(userId).collection("Progress").document("Khatkha");
         DocumentReference detka = db.collection("users").document(userId).collection("Progress").document("Detka");
 
-        TrophyOne.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("Важное сообщение!")
-                        .setMessage("Покормите кота!")
-                        .setIcon(R.drawable.icon)
-                        .setPositiveButton("ОК", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
 
-                                dialog.cancel();
-                            }
-                        });
-                builder.show();
-            }
-        });
         TrophyOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,7 +80,7 @@ public class Tracker_fragment extends Fragment {
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("Хатха-йог!")
-                        .setMessage("Закончите курс хатха-йоги!")
+                        .setMessage("Закончите курс Хатха-йоги!")
                         .setIcon(R.drawable.icon)
                         .setPositiveButton("ОК", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
@@ -110,8 +95,8 @@ public class Tracker_fragment extends Fragment {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("Ice Man")
-                        .setMessage("Закончите курс Вима Хофа")
+                builder.setTitle("Спокойствие, только спокойствие...")
+                        .setMessage("Закончите курс Управления стрессом")
                         .setIcon(R.drawable.icon)
                         .setPositiveButton("ОК", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
@@ -127,7 +112,7 @@ public class Tracker_fragment extends Fragment {
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("Биомашина")
-                        .setMessage("Закончите курс 'Табата'!")
+                        .setMessage("Закончите курс Табата!")
                         .setIcon(R.drawable.icon)
                         .setPositiveButton("ОК", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
